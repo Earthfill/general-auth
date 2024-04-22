@@ -23,7 +23,7 @@ export class UsersController {
   @Serialize(UserDto)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('profile')
-  @Roles(Role.ADMIN)
+  @Roles(Role.USER)
   profile(@CurrentUser() user: User) {
     return user;
   }
