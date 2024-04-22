@@ -5,10 +5,10 @@ import {
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './schemas';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
-import { LoginDto, SignUpDto } from './dtos';
+import { SignInDto, SignUpDto } from './dtos';
+import { User } from './entities';
 
 @Injectable()
 export class AuthService {
@@ -19,20 +19,21 @@ export class AuthService {
   ) {}
 
   async signup(signUpDto: SignUpDto): Promise<{ token: string }> {
-    const { email, password, name } = signUpDto;
+    const { email, password, name, roles } = signUpDto;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = await this.userModel.create({
       name,
       email,
+      roles,
       password: hashedPassword,
     });
     const token = this.jwtService.sign({ id: user._id });
     return { token };
   }
 
-  async login(loginDto: LoginDto): Promise<{ token: string }> {
-    const { email, password } = loginDto;
+  async login(signInDto: SignInDto): Promise<{ token: string }> {
+    const { email, password } = signInDto;
     const user = await this.userModel.findOne({ email });
     if (!user) {
       throw new NotFoundException('User not found');
