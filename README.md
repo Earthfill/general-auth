@@ -73,4 +73,4 @@ Before running this application, ensure you have Node.js and npm installed on yo
 
 ## Author
 
-This example was created by Kingsley Omoaka-Iyorah.
+This was created by Kingsley Omoaka-Iyorah.
