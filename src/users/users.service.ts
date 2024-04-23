@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './entities';
+import { APIFeatures } from '../utils';
 
 @Injectable()
 export class UsersService {
@@ -16,5 +17,15 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
     return user;
+  }
+
+  async findAll(query?: any): Promise<User[]> {
+    const features = new APIFeatures(this.userModel.find(), query)
+      .filter()
+      .sort()
+      .limit()
+      .pagination();
+    const users = await features.mongooseQuery;
+    return users;
   }
 }

@@ -13,25 +13,28 @@ Before running this application, ensure you have Node.js and npm installed on yo
    ```bash
    git clone <repository-url>
 
+   ```
+
 2. **Install dependencies:**
-  cd nest-auth-example
-  npm install
+   cd nest-auth-example
+   npm install
 
 3. **Set up environment variables:**
 
-  MONGO_URI=your_mongo_connection_string
-  JWT_SECRET=your_jwt_secret
-  JWT_EXPIRES=3600  # JWT expiration time in seconds
+MONGO_URI=your_mongo_connection_string
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES=3600 # JWT expiration time in seconds
 
 4. **Start the application:**
 
-  npm start
+npm start
 
 ## Features
 
 ### User Authentication (Sign Up / Sign In)
 
 - **Create User Account (Sign Up)**
+
   - Endpoint: `POST /auth/signup`
   - Description: Create a new user account by providing name, email, password, and optional roles.
 
