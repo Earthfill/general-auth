@@ -76,4 +76,4 @@ npm start
 
 ## Author
 
-This example was created by Kingsley Omoaka-Iyorah.
+This was created by Kingsley Omoaka-Iyorah.
